@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [RouteController::class,'dashboard'])->name('dashboard');
     // Customer routes
     Route::get('order',[RouteController::class,'placeOrder'])->name('PlaceOrder');
+    Route::post('order/confirm',[RouteController::class,'confirmOrder'])->name('ConfirmOrder');
     Route::get('orders')->name('Orders');
 
 });

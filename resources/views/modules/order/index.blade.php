@@ -2,7 +2,6 @@
     <x-slot name="title">
         Order
     </x-slot>
-
     <div class="container-fluid py-4">
         <div class="row ">
             <div class="col-md-7 mb-xl-0 mx-auto mb-4">
@@ -21,13 +20,13 @@
                             </div>
                         </div>
     
-                        <form action="{{ url('') }}">
+                        <form action="{{ url('order/confirm') }}" method="Post">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="" class="">Cylinder Size</label>
-                                        <select name="cylinder-size" class="form-control">
+                                        <select name="cylinder_size" class="form-control">
                                             <option value="5">5kg</option>
                                             <option value="6">6kg</option>
                                             <option value="13">13kg</option>
@@ -37,7 +36,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Delivery Date</label>
-                                        <input type="date" class="form-control"  name="delivery-date" value="{{ old('delivery-date') ?? date('Y-m-d') }}">
+                                        <input type="date" class="form-control"  name="delivery_date" value="{{ old('delivery-date') ?? date('Y-m-d') }}">
                                     </div>
                                 </div>
                                 <div class="col-12 text-end">
