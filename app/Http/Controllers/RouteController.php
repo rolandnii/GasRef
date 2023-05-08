@@ -15,9 +15,11 @@ class RouteController extends Controller
 {
     public function dashboard(): View
     {
+        
         if (Auth::user()->user_type == 'admin') {
             return view('admin');
         }
+      
         return view('customer');
     }
 
@@ -101,5 +103,10 @@ class RouteController extends Controller
     {
 
         return view('modules.order.finish');
+    }
+
+    public function allMyOrders(): View
+    {
+        return view('modules.customerorders.index');
     }
 }

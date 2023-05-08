@@ -19,41 +19,6 @@
                                 </div>
                             </div>
                         </div>
-    
-                        <form action="{{ url('order/confirm') }}" method="Post">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="" class="">Cylinder Size</label>
-                                        <select name="cylinder_size" class="form-control">
-                                            @foreach ($cylinders as $cylinder)
-                                            <option value="{{ $cylinder->size }}">{{ $cylinder->size }}</option>
-                                            @endforeach
-                                            
-                                        </select>
-                                        @error('cylinder_size')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Delivery Date</label>
-                                        <input type="date" class="form-control"  name="delivery_date" value="{{ old('delivery-date') ?? date('Y-m-d') }}">
-                                    </div>
-                                </select>
-                                @error('delivery_rate')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                                </div>
-                                <div class="col-12 text-end">
-                                    <button type="submit" class="btn btn-info bg-gradient-info">Order</button>
-                                </div>
-                            </div>
-
-                        </form>
                     </div>
                 </div>
             </div>

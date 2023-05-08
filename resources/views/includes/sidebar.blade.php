@@ -10,10 +10,28 @@
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
+        @php
+        
+            $modules= [
+            [
+                'title' => 'Dashboard',
+                'icon' => 'fa-solid fa-house',
+                'url' => url('/'),
+                'name' => "Dashboard",
+            ],
+            [
+                'title' => 'Orders',
+                'icon' => 'fa-solid fa-gas-pump',
+                'url' => url('/orders'),
+                "name" => 'Orders'
+            ],
+        ];
+        @endphp
+        @foreach ($modules as $module)
         <li class="nav-item">
-          <a class="nav-link  active" href="{{ url('/') }}">
+          <a class="nav-link {{ request()->route()->named($module['name']) ? 'active' :'' }}" href="{{ $module['url'] }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              {{-- <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -25,11 +43,13 @@
                     </g>
                   </g>
                 </g>
-              </svg>
+              </svg> --}}
+              <i class="{{ $module['icon'] }} text-md {{ request()->route()->named($module['name']) ? 'text-light' :'text-secondary' }}"></i>
             </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
+            <span class="nav-link-text ms-1">{{ $module['title'] }}</span>
           </a>
         </li>
+        @endforeach
       </ul>
     </div>
    

@@ -25,14 +25,14 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     //General Route
-    Route::get('/dashboard', [RouteController::class,'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [RouteController::class,'dashboard'])->name('Dashboard');
     // Customer routes
     Route::get('order',[RouteController::class,'placeOrder'])->name('PlaceOrder');
     Route::get('order/store',[OrderController::class,'store'])->name('StoreOrder');
     Route::post('order/confirm',[RouteController::class,'confirmOrder'])->name('ConfirmOrder');
     Route::get('order/confirm/{code}',[OrderController::class,'store']);
     Route::get('order/done',[RouteController::class,'orderDone']);
-    Route::get('orders')->name('Orders');
+    Route::get('orders',[RouteController::class,'allMyOrders'])->name('Orders');
 });
 
 
