@@ -4,25 +4,31 @@
     <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                <li class="breadcrumb-item text-sm"><span class="opacity-5 text-dark">Page</span ></li>
+                <li class="breadcrumb-item text-sm"><span class="opacity-5 text-dark">Page</span></li>
                 <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{ $title }}</li>
             </ol>
             <h6 class="font-weight-bolder mb-0">{{ $title }}</h6>
         </nav>
+        <form action="{{ url('/logout') }}" method="Post" id="LogoutForm">
+            @csrf
+        </form>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-    
             </div>
             <ul class="navbar-nav  justify-content-end">
+                @if (auth()->user()->user_type == 'customer')
                 <li class="nav-item d-flex align-items-center">
-                    <a class="btn btn-secondary btn-sm mb-0 me-3" href="{{ url('/order') }}"
-                        >Place an order</a>
+                    <a class="btn btn-secondary btn-sm mb-0 me-1" href="{{ url('/order') }}">Place an order</a>
                 </li>
+                @endif
                 <li class="nav-item d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-                        <i class="fas fa-door-open"></i>
-                        <span class="d-sm-inline d-none">Logout</span>
+                        <button form="LogoutForm" class="btn btn-info btn-sm mb-0 me-1">
+                            <i class="fas fa-door-open"></i>
+                            <span class="d-sm-inline d-none">Logout</span> 
+                        </button>
                     </a>
+
                 </li>
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
@@ -70,7 +76,7 @@
                                         <h6 class="text-sm font-weight-normal mb-1">
                                             No messages available
                                         </h6>
-                                        
+
                                     </div>
                                 </div>
                             </a>

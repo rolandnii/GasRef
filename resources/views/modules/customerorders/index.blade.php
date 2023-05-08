@@ -5,34 +5,46 @@
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-7 mt-4">
-              <div class="card">
-                <div class="card-header pb-0 px-3">
-                  <h6 class="mb-0">My Orders</h6>
+                <div class="card">
+                    <div class="card-header pb-0 px-3">
+                        <h6 class="mb-0">My Orders</h6>
+                    </div>
+                    <div class="card-body pt-4 p-3">
+                        <ul class="list-group">
+                            @forelse ($myOrders as $item)
+                                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="mb-3 text-sm">{{ $item->order_no }}</h6>
+                                        <span class="text-xs mb-1">Cylinder Size: <span
+                                                class="text-dark font-weight-bold ms-sm-2">{{ $item->cylinder_size }}</span></span>
+                                        <span class="text-xs mb-1">Delivery Date: <span
+                                                class="text-dark ms-sm-2 font-weight-bold">{{ date('jS M Y', strtotime($item->delivery_date)) }}</span></span>
+                                        <span class="text-xs mb-1">Subtotal: <span
+                                                class="text-dark ms-sm-2 font-weight-bold">{{ $item->subtotal }}</span></span>
+                                        <span class="text-xs mb-1">Delivery: <span
+                                                class="text-dark ms-sm-2 font-weight-bold">{{ $item->delivery }}</span></span>
+                                        <span class="text-xs mb-1">Total: <span
+                                                class="text-dark ms-sm-2 font-weight-bold">{{ $item->total }}</span></span>
+                                    </div>
+                                    <div class="ms-auto text-end">
+                                        <span class="badge bg-gradient-warning">{{ $item->status }}</span>
+                                    </div>
+                                </li>
+                            @empty
+                                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                    <div class="d-flex flex-column text-center">
+                                        <h6 class="mb-3 text-lg">No orders</h6>
+                                    </div>
+                                </li>
+                            @endforelse
+
+
+                        </ul>
+                    </div>
                 </div>
-                <div class="card-body pt-4 p-3">
-                  <ul class="list-group">
-                    @foreach ($myOrders as $item)
-                    <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-3 text-sm">{{ $item->order_no }}</h6>
-                        <span class="text-xs mb-1">Cylinder Size: <span class="text-dark font-weight-bold ms-sm-2">{{ $item->cylinder_size }}</span></span>
-                        <span class="text-xs mb-1">Delivery Date: <span class="text-dark ms-sm-2 font-weight-bold">{{ date('jS M Y',strtotime($item->delivery_date ))}}</span></span>
-                        <span class="text-xs mb-1">Subtotal: <span class="text-dark ms-sm-2 font-weight-bold">{{ $item->subtotal }}</span></span>
-                        <span class="text-xs mb-1">Delivery: <span class="text-dark ms-sm-2 font-weight-bold">{{ $item->delivery }}</span></span>
-                        <span class="text-xs mb-1">Total: <span class="text-dark ms-sm-2 font-weight-bold">{{ $item->total }}</span></span>
-                      </div>
-                      <div class="ms-auto text-end">
-                        <span class="badge bg-gradient-warning">{{ $item->status }}</span>
-                      </div>
-                    </li>
-                    @endforeach
-                    
-                  </ul>
-                </div>
-              </div>
             </div>
-            
-          </div>
+
+        </div>
     </div>
 </x-app-layout>
 

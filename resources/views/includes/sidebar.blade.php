@@ -11,7 +11,6 @@
     <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         @php
-        
             $modules= [
             [
                 'title' => 'Dashboard',
