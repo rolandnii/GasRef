@@ -19,8 +19,11 @@ class RouteController extends Controller
         if (Auth::user()->user_type == 'admin') {
             return view('admin');
         }
-      
-        return view('customer');
+        $myOrders = DB::table('orders')
+        ->where('user_code',auth()->user()->user_code)
+        ->where('user_confirm',1)
+        ->count();
+        return view('customer', compact('myOrders'));
     }
 
     public function placeOrder(): View
@@ -107,6 +110,10 @@ class RouteController extends Controller
 
     public function allMyOrders(): View
     {
-        return view('modules.customerorders.index');
+        $myOrders = DB::table('orders')
+        ->where('user_code',auth()->user()->user_code)
+        ->where('user_confirm',1)
+        ->get();
+        return view('modules.customerorders.index',compact('myOrders'));
     }
 }
