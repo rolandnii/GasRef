@@ -126,7 +126,15 @@ class RouteController extends Controller
     {
         if(auth()->user()->user_type == 'admin')
         {
-            return view('modules.admin.orders.index');
+            $myOrders = DB::table('orders')
+            ->where('user_confirm', 1)
+            ->where('deleted',0)
+            ->get();
+            $cylinders = DB::table('cylinder')
+            ->select('size')
+            ->where('deleted', 0)
+            ->get();
+            return view('modules.admin.orders.index',compact('myOrders','cylinders'));
         }
         $myOrders = DB::table('orders')
             ->where('user_code', auth()->user()->user_code)
