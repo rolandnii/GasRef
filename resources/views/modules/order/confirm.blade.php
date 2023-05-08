@@ -19,13 +19,13 @@
                             <div class="col-md-12 mb-1">
                                 <div class="d-flex justify-content-between">
                                     <span class="text-white opacity-8">Cylinder Size</span>
-                                    <span class="text-white text-normal">25kg</span>
+                                    <span class="text-white text-normal">{{ $cylinderSize }}</span>
                                 </div>
                             </div>
                             <div class="col-md-12 my-1">
                                 <div class="d-flex justify-content-between">
                                     <span class="text-white opacity-8">Delivery Date</span>
-                                    <span class="text-white text-normal">23rd May 2023</span>
+                                    <span class="text-white text-normal">{{ $displayDeliveryDate }}</span>
                                 </div>
                             </div>
                             <div class="col-md-12 my-1">
@@ -41,19 +41,19 @@
                             <div class="col-md-12 my-1">
                                 <div class="d-flex justify-content-between">
                                     <span class="text-white opacity-8">Subtotal</span>
-                                    <span class="text-white">₵ 1000.00</span>
+                                    <span class="text-white">₵ {{ $subTotal->price }}</span>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="d-flex justify-content-between">
                                     <span class="text-white opacity-8">Delivery Rate</span>
-                                    <span class="text-white">₵ 10.00</span>
+                                    <span class="text-white">₵ {{ $deliveryRate }}</span>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="d-flex justify-content-between">
                                     <span class="text-white opacity-8">Discount</span>
-                                    <span class="text-white">₵ 0.00</span>
+                                    <span class="text-white">₵ {{ $discount }}</span>
                                 </div>
                             </div>
                         </div>
@@ -61,43 +61,21 @@
                         <div class="row">
                             <div class="col-md-12 text-end">
                                 <span class="text-white opacity-8 text-sm">Total:</span>
-                                <span class="text-white text-xl text-bold">₵1010.00</span>
-                            </div>
-                            <div class="col-md-12 text-center">
-                                {{-- form start --}}
-                                <form action="">
-                                    <button type="submit" class="btn btn-success text-capitalize mb-2">Confirm order</button>
-                                </form>
+                                <span class="text-white text-xl text-bold">₵ {{ $total }}</span>
                             </div>
                         </div>
-                        {{-- <form action="{{ url('order/confirm') }}" method="Post">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="" class="">Cylinder Size</label>
-                                        <select name="cylinder-size" class="form-control">
-                                            <option value="5">5kg</option>
-                                            <option value="6">6kg</option>
-                                            <option value="13">13kg</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Delivery Date</label>
-                                        <input type="date" class="form-control"  name="delivery-date" value="{{ old('delivery-date') ?? date('Y-m-d') }}">
-                                    </div>
-                                </div>
-                                <div class="col-12 text-end">
-                                    <button type="submit" class="btn btn-info bg-gradient-info">Order</button>
-                                </div>
-                            </div>
-
-                        </form> --}}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 text-center my-4">
+                            <a href="{{ url('order/confirm/'."$transid") }}"><button type="submit" class="btn btn-secondary px-5 text-capitalize mb-2">Confirm order</button></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @push('script')
+    @endpush
 </x-app-layout>
+

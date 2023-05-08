@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +28,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [RouteController::class,'dashboard'])->name('dashboard');
     // Customer routes
     Route::get('order',[RouteController::class,'placeOrder'])->name('PlaceOrder');
+    Route::get('order/store',[OrderController::class,'store'])->name('StoreOrder');
     Route::post('order/confirm',[RouteController::class,'confirmOrder'])->name('ConfirmOrder');
+    Route::get('order/confirm/{code}',[OrderController::class,'store']);
+    Route::get('order/done',[RouteController::class,'orderDone']);
     Route::get('orders')->name('Orders');
-
 });
 
 

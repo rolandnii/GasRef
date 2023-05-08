@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Order
+        Orders
     </x-slot>
     <div class="container-fluid py-4">
         <div class="row ">
