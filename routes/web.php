@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('order/confirm/{code}',[OrderController::class,'store']);
     Route::get('order/done',[RouteController::class,'orderDone']);
     Route::get('orders',[RouteController::class,'allMyOrders'])->name('Orders');
+    Route::post('order/update',[OrderController::class,'update']);
 });
 
 
