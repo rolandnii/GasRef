@@ -27,7 +27,15 @@
                                                 class="text-dark ms-sm-2 font-weight-bold">{{ $item->total }}</span></span>
                                     </div>
                                     <div class="ms-auto text-end">
-                                        <span class="badge bg-gradient-warning">{{ $item->status }}</span>
+                                      @if ($item->status == 'Cancelled')
+                                      <span class="badge badge-sm bg-danger">{{ $item->status }}</span>
+                                  @elseif ($item->status == 'Pending')
+                                      <span class="badge badge-sm bg-warning">{{ $item->status }}</span>
+                                  @elseif ($item->status == 'Confirmed')
+                                      <span class="badge badge-sm bg-primary">{{ $item->status }}</span>
+                                  @else
+                                      <span class="badge badge-sm bg-success">{{ $item->status }}</span>
+                                  @endif
                                     </div>
                                 </li>
                             @empty

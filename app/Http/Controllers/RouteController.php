@@ -60,7 +60,8 @@ class RouteController extends Controller
                 'cylinder_size' => 'required|string',
             ],
             [
-                "delivery_date.required" => "Set your delivery date"
+                "delivery_date.required" => "Set your delivery date",
+                'cylinder_size.required' => 'Set your cylinder size',
             ]
         );
         if ($validator->fails()) {
@@ -126,7 +127,18 @@ class RouteController extends Controller
     {
         if(auth()->user()->user_type == 'admin')
         {
-            return view('modules.admin.orders.index');
+            $myOrders = DB::table('orders')
+            ->select('orders.transid as code','orders.*','tbluser.fname as fname','tbluser.lname as lname','tbluser.phone','tbluser.email')
+            ->join('tbluser','orders.user_code','tbluser.user_code')
+            ->where('orders.user_confirm', 1)
+            ->where('orders.deleted',0)
+            ->orderByDesc('order_date')
+            ->get();
+            $cylinders = DB::table('cylinder')
+            ->select('size')
+            ->where('deleted', 0)
+            ->get();
+            return view('modules.admin.orders.index',compact('myOrders','cylinders'));
         }
         $myOrders = DB::table('orders')
             ->where('user_code', auth()->user()->user_code)
