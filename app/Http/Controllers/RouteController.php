@@ -28,6 +28,7 @@ class RouteController extends Controller
             ->count();
             $pendingOrder =  DB::table('orders')
             ->where('user_confirm',1)
+            ->where('status','Pending')
             ->where('deleted', 0)
             ->count();
             return view('admin',compact('orders','pendingTodayOrder','pendingOrder'));
